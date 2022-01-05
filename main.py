@@ -85,7 +85,7 @@ def replace_file_img_url(file_path):
         for line in f:
             # 正则匹配当前行
             # 读内容
-            res = re.search(OLD_IMG_URL_PREFIX + r'.+(?=\))', line)
+            res = re.search(OLD_IMG_URL_PREFIX + r'.+\.(png|jpg|gif|jpeg|webp)', line)
             if res:
                 # 提取url
                 img_url = line[res.span()[0]: res.span()[1]]
@@ -114,4 +114,5 @@ def replace_file_img_url(file_path):
 
 if __name__ == '__main__':
     for file_path in list_file_path(ROOT_DIR_PATH):
+        print("正在处理：" + file_path)
         replace_file_img_url(file_path)
